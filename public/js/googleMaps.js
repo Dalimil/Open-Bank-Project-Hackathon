@@ -2,65 +2,83 @@
 var map;
 function initMap() {
    map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -34.397, lng: 150.644},
-          zoom: 8
+          zoom: 15
         });
-
-    
 
     navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         map.setCenter(initialLocation);
-        findRestuarants(position, map);
+        findRestaurants(position, map);
      });
     
 
- 
-}
+ }
 
-function findRestuarants(position, map){
-
-	var resLat = position.coords.latitude;
-	var resLng = position.coords.latitude;
+function findRestaurants(ourPosition, map){
 	
-    var obj = JSON.parse("restaurant.json");
+    var text = '{ "results" : [' +
+    '{ "restaurant":"gbk" , "lat":"51.517059", "lng":"-0.088824" },' +
+    '{ "restaurant":"pizza hut" , "lat":"51.617059", "lng":"-0.088824" } ]}';
+    
+    var obj = JSON.parse(text);
+    
+    var infowindow = new google.maps.InfoWindow;
+    var restaurant;
     
     for (i = 0; i < obj.results.length; i++) {
+      var pos = {lat: parseFloat(obj.results[i].lat), lng: parseFloat(obj.results[i].lng)};
+      if(isClose(ourPosition, pos)){
+            
+        //should have an if statement to check if restaurant is close    
+
+        var marker = new google.maps.Marker({
+            map: map,
+            position: pos,
+
+        });
+
+        google.maps.event.addListener(marker, 'click', (function(marker, i) {
+            return function() {
+                restaurant = obj.results[i].restaurant;
+                infowindow.setContent(restaurant);
+                infowindow.open(map, marker);
+            }
+         })(marker, i));
         
+      }
     }
-    //find restaurants in the area
-	jsonFindRestaurants(results);
 		
-	
+
 }
 
 
 
 
-function jsonFindRestaurants(json) {
-    var obj = parse.JSON(json);
-    var infowindow = new google.maps.InfoWindow;
-        
-  for (i = 0; i < obj.results.length; i++) {
-    var restaurant = obj.results[i].restaurant;
+function isClose(ourPosition, position) {
+    var ourLat = ourPosition.coords.latitude;
+    var ourLng = ourPosition.coords.longitude;
+    var lat = position.lat;
+    var lng = position.lng;
+    
+    ourLat = deg2rad(ourLat);
+    ourLng = deg2rad(ourLng);
+    lat = deg2rad(lat);
+    lng = deg2rad(lng);
+    
+    var x = (lng-ourLng) * Math.cos(lat - ourLat);
+    var y = (lat-ourLat);
+    var radius = 6371.0;
+    var distance = Math.sqrt(x*x + y*y) * radius;
 
-    var pos = {lat: parseFloat(obj.results[i].lat), lng: parseFloat(obj.results[i].lng)};
-
-    var marker = new google.maps.Marker({
-        map: map,
-        position: pos,
-
-    });
-
-     google.maps.event.addListener(marker, 'click', (function(marker, i) {
-        return function() {
-            contentString = restuarant;
-
-            infowindow.setContent(contentString);
-            infowindow.open(map, marker);
-        }
-      })(marker, i));
-    }
-  
+    var isClose = distance < 1.0;
+    
+    return isClose;
+    
 }
 
+
+function deg2rad(degree){
+    degree = parseFloat(degree);
+    var rad = degree/180 * Math.PI;
+    return rad;
+}
