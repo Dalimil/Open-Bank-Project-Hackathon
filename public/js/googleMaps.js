@@ -1,19 +1,24 @@
+
 var map;
-
 function initMap() {
-  map = new google.maps.Map(document.getElementById('map'), {});
-    
+   map = new google.maps.Map(document.getElementById('map'), {
+          center: {lat: -34.397, lng: 150.644},
+          zoom: 8
+        });
 
+    
+/*
     navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         map.setCenter(initialLocation);
-        findRestuarants(position, map);
+        alert(position.coords.latitude);
+       // findRestuarants(position, map);
      });
-    
+   */ 
 
  
 }
-
+/*
 function findRestuarants(position, map){
 
 	var resLat = position.coords.latitude;
@@ -25,7 +30,7 @@ function findRestuarants(position, map){
         
     }
     //find restaurants in the area
-	jsonFindRestaurants(resLat, resLng);
+	jsonFindRestaurants(results);
 		
 	
 }
@@ -33,9 +38,9 @@ function findRestuarants(position, map){
 
 
 
-function jsonFindRestaurants(resLat, resLng) {
-
-  var infowindow = new google.maps.InfoWindow;
+function jsonFindRestaurants(json) {
+    var obj = parse.JSON(json);
+    var infowindow = new google.maps.InfoWindow;
         
   for (i = 0; i < obj.results.length; i++) {
     var restaurant = obj.results[i].restaurant;
@@ -59,3 +64,4 @@ function jsonFindRestaurants(resLat, resLng) {
     }
   
 }
+*/
