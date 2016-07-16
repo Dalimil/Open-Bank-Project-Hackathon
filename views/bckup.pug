@@ -1,0 +1,22 @@
+extends layout
+
+block content
+
+  <p> YOU CAN JUST USE STANDARD HTML <b>HERE</b> - THAT'S FINE </p>
+  p.
+    Putting plain text inside a tag... 
+    Just use the dot syntax
+  img(src='static/img/nodejs.png', width='10%')
+  hr
+  - var formData = { buttonName: 'Click me' } /* '-' to use JavaScript */
+  ul
+  - for (var i=1; i<= 5; i++) {
+    li= i + ". Hello"
+  - }
+  br
+  - var languages = ['php', 'node', 'ruby']
+  div 
+    // or 'for value in languages'
+    each value, index in languages 
+      p= index + ". " + value
+  
