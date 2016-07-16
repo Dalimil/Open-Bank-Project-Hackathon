@@ -1,18 +1,16 @@
 var map;
 
 function initMap() {
-    alert();/*
-map = new google.maps.Map(document.getElementById('map'), {});
-  
+  map = new google.maps.Map(document.getElementById('map'), {});
+    
 
-  navigator.geolocation.getCurrentPosition(function(position) {
-      initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
-      map.setCenter(initialLocation);
-      findRestuarants(position, map);
-   });
-  
+    navigator.geolocation.getCurrentPosition(function(position) {
+        initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
+        map.setCenter(initialLocation);
+        findRestuarants(position, map);
+     });
+    
 
-  */
  
 }
 
