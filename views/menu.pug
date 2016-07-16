@@ -1,17 +1,29 @@
 extends restaurant-layout
 
 block frame
-  // Tabs
-  <div class="row">
+  <div id="menu-tabs" class="row">
     <ul class="tabs">
       <li class="tab col s3"><a href="#test1">Drinks</a></li>
-      <li class="tab col s3"><a class="active" href="#test2">Burgers</a></li>
+      <li class="tab col s3"><a href="#test2">Burgers</a></li>
       <li class="tab col s3"><a href="#test3">Desserts</a></li>
       <li class="tab col s3"><a href="#test4">Wine</a></li>
     </ul>
 
     <div id="test1" class="col s12">Test 1
-
+      <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">Sipsmith London Dry Gin<span class="price" style="float: right">&pound;2.35</span></div>
+          <div class="collapsible-body"><a style="margin: 2em 2em 0em 0em; float: right" class="btn-floating waves-effect waves-light red add-basket"><i class="material-icons">add</i></a><p>Traditionally crafted, small batch and copper distilled premium spirits.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
+          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+        <li>
+          <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
+          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
+        </li>
+      </ul>
     </div>
     <div id="test2" class="col s12">Test 2
 
@@ -22,6 +34,13 @@ block frame
     <div id="test4" class="col s12">Test 4
 
     </div>
+  </div>
+
+  <div id="menu-total-price">
+    <ul class="collection">
+      <li class="collection-item" style="font-weight: bold; font-size: 1.4em;">Total price: &pound;<span id="tot-price">0.00</span><a href="/submitted" class="btn-floating waves-effect waves-light red secondary-content"><i class="material-icons">shopping_cart</i></a>
+      </li>
+    </ul>
   </div>
 
           

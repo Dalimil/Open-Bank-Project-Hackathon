@@ -36,6 +36,7 @@ app.use('/static', express.static(pp('public'))); // first arg could be omitted
 app.get('/', function(req, res) {
 	let isFirstVisit = req.session.firstVisit === undefined ? true : false;
 	req.session.firstVisit = false;
+
 	console.log(isFirstVisit);
 	console.log(req.session);
 	// delete req.session.shop;
@@ -50,19 +51,33 @@ app.get('/central', function(req, res) {
 	res.render('central');
 });
 
+// This would be POST but I'm too tired to do the whole client-submit-form flow
+app.get('/submitted', function(req, res) {
+	let restaurant = req.session.restaurant;
+	res.redirect('/restaurant/' + restaurant + '/?ordered=true');
+});
 
 app.get('/restaurant/:name', function(req, res) {
-   let name = req.params.name;
-   req.session.restaurant = name;
-   res.render('restaurant', {url: "/static/img/rest.jpg"});
+	let name = req.params.name;
+	req.session.restaurant = name;
+
+	let submitted = req.query.ordered;
+	let showToast = false;
+	console.log(submitted !== undefined);
+	if(submitted !== undefined && submitted) {
+		showToast = true;
+	}
+
+	console.log(showToast);
+	res.render('restaurant', {url: "/static/img/rest.jpg", showToast: showToast});
 });
 
 app.get('/menu', function(req, res) {
 	let restaurant = req.session.restaurant;
-	if(restaurant === undefined) {
+	/*if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
-	}
-	res.render('menu');
+	}*/
+	res.render('menu', {showToast: false});
 });
 
 app.get('/book', function(req, res) {
