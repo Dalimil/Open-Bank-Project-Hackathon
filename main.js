@@ -52,7 +52,7 @@ app.get('/central', function(req, res) {
 
 app.get('/restaurant/:name', function(req, res) {
    console.log(req.requestInfo);
-   res.send('Hello <strong>GET</strong>');
+   res.render('restaurant', {});
 });
 
 
