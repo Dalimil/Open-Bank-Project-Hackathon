@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 	// res.json({ user: 'john' }); // Send json response
 	// res.sendFile( __dirname + "/" + "index.html" );
 	// Now render .pug template with any JSON locals/variables:
-	res.render('index', { isFirstVisit: !isFirstVisit } );  // TODO: remove negation
+	res.render('index', { isFirstVisit: isFirstVisit } );  // TODO: remove negation
 });
 
 // Our central site - with user registration, etc.
