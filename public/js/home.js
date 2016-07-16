@@ -20,7 +20,7 @@ $(function(){
 		//ready: function() { alert('Ready'); }, // Callback for Modal open
 		//complete: function() { alert('Closed'); } // Callback for Modal close
 	});
-	$('.modal-trigger').click();
+	//$('.modal-trigger').click();
 
 });
 
