@@ -1,3 +1,5 @@
+"use strict"
+
 const express = require('express');
 const bodyParser = require('body-parser'); // additional body parsing
 const morgan = require('morgan'); // General request logger
@@ -32,16 +34,15 @@ app.use('/static', express.static(pp('public'))); // first arg could be omitted
 
 // Index
 app.get('/', function(req, res) {
-	req.session.shop = { items: [1,2,3] }; // set cookie - any json or string
-	req.session.views += 1;
+	let isFirstVisit = req.session.firstVisit || true;
+	req.session.firstVisit = false;
+	console.log(isFirstVisit);
 	console.log(req.session);
 	// delete req.session.shop;
 	// res.json({ user: 'john' }); // Send json response
 	// res.sendFile( __dirname + "/" + "index.html" );
 	// Now render .pug template with any JSON locals/variables:
-	res.render('index', 
-		{ title: 'Demo', data: { name: "Shop", items: [3, 5, 8] } } 
-	); 
+	res.render('index', { firstVisit: !isFirstVisit } );  // TODO: remove negation
 });
 
 // Our central site - with user registration, etc.
@@ -51,7 +52,7 @@ app.get('/central', function(req, res) {
 
 
 app.get('/restaurant/:name', function(req, res) {
-   console.log(req.requestInfo);
+   console.log(req.session);
    res.render('restaurant', {});
 });
 

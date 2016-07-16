@@ -1,7 +1,11 @@
 extends layout
 
+block scripts
+  script.
+    var isFirstVisit = isFirstVisit
+  script(src='static/js/home.js')
+  
 block content
-
   // NavBar
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container">
@@ -16,14 +20,42 @@ block content
     </div>
   </nav>
 
+  if isFirstVisit
+    // Slider
+    <div class="slider">
+      <ul class="slides">
+        <li>
+          <img src="http://lorempixel.com/580/250/nature/1"> <!-- random image -->
+          <div class="caption center-align">
+            <h3>This is our big Tagline!</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/580/250/nature/2"> <!-- random image -->
+          <div class="caption left-align">
+            <h3>Left Aligned Caption</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+          </div>
+        </li>
+        <li>
+          <img src="http://lorempixel.com/580/250/nature/4"> <!-- random image -->
+          <div class="caption center-align">
+            <h3>This is our big Tagline!</h3>
+            <h5 class="light grey-text text-lighten-3">Here's our small slogan.</h5>
+            <a id="finish-intro" class="waves-effect waves-light btn">Let's go</a>
+          </div>
+        </li>
+      </ul>
+    </div>
+
   // ------------- MAP COMES HERE ----------------
 
   // ------------- LIST OF RESTAURANTS <-------------
-  <a href="/restaurant/me">RESTAURANT link</a><br>
   // Modals
-  <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
-  <!-- Modal Structure -->
+  // Modal Trigger 
+  <button data-target="modal1" class="btn modal-trigger" style="display: none;">Modal</button>
+  // Modal Structure
   <div id="modal1" class="modal bottom-sheet">
     
     <ul class="collection">
@@ -41,6 +73,7 @@ block content
         <p>First Line <br>
            Second Line
         </p>
+        <a href="/restaurant/me">RESTAURANT link</a>
         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
       <li class="collection-item avatar">
@@ -60,9 +93,5 @@ block content
         <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
       </li>
     </ul>
-            
-    <div class="modal-footer">
-      <a href="#!" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
-    </div>
   </div>
        
