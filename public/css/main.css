@@ -18,6 +18,10 @@ nav i.material-icons {
     margin-right: 0.5em;
 }
 
+nav li.active {
+	background-color: skyblue;
+}
+
 #restaurant-list {
 	position: fixed;
 	width: 100%;
