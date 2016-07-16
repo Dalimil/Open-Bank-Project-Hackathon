@@ -34,7 +34,7 @@ app.use('/static', express.static(pp('public'))); // first arg could be omitted
 
 // Index
 app.get('/', function(req, res) {
-	let isFirstVisit = req.session.firstVisit || true;
+	let isFirstVisit = req.session.firstVisit === undefined ? true : false;
 	req.session.firstVisit = false;
 	console.log(isFirstVisit);
 	console.log(req.session);
@@ -42,7 +42,7 @@ app.get('/', function(req, res) {
 	// res.json({ user: 'john' }); // Send json response
 	// res.sendFile( __dirname + "/" + "index.html" );
 	// Now render .pug template with any JSON locals/variables:
-	res.render('index', { firstVisit: !isFirstVisit } );  // TODO: remove negation
+	res.render('index', { isFirstVisit: isFirstVisit } );  // TODO: remove negation
 });
 
 // Our central site - with user registration, etc.
@@ -52,8 +52,25 @@ app.get('/central', function(req, res) {
 
 
 app.get('/restaurant/:name', function(req, res) {
-   console.log(req.session);
-   res.render('restaurant', {});
+   let name = req.params.name;
+   req.session.restaurant = name;
+   res.render('restaurant', {url: "/static/img/logo.png"});
+});
+
+app.get('/menu', function(req, res) {
+	let restaurant = req.session.restaurant;
+	if(restaurant === undefined) {
+		res.send("You didn't select a restaurant!");
+	}
+	res.render('menu');
+});
+
+app.get('/book', function(req, res) {
+	let restaurant = req.session.restaurant;
+	if(restaurant === undefined) {
+		res.send("You didn't select a restaurant!");
+	}
+	res.send("ok");
 });
 
 

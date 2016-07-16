@@ -7,24 +7,23 @@ function initMap() {
         });
 
     
-/*
+
     navigator.geolocation.getCurrentPosition(function(position) {
         initialLocation = new google.maps.LatLng(position.coords.latitude,position.coords.longitude);
         map.setCenter(initialLocation);
-        alert(position.coords.latitude);
-       // findRestuarants(position, map);
+        findRestuarants(position, map);
      });
-   */ 
+    
 
  
 }
-/*
+
 function findRestuarants(position, map){
 
 	var resLat = position.coords.latitude;
 	var resLng = position.coords.latitude;
 	
-    var obj = JSON.parse("test.json");
+    var obj = JSON.parse("restaurant.json");
     
     for (i = 0; i < obj.results.length; i++) {
         
@@ -64,4 +63,4 @@ function jsonFindRestaurants(json) {
     }
   
 }
-*/
+

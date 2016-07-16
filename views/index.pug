@@ -2,7 +2,8 @@ extends layout
 
 block scripts
   script.
-    var isFirstVisit = isFirstVisit
+    // Inject js variable
+    var isFirstVisit= #{isFirstVisit}
   script(src='/static/js/home.js')
   script(src="/static/js/googleMaps.js")
 
@@ -13,8 +14,10 @@ block content
     <a id="logo-container" href="#" class="brand-logo">Lazy Bill</a>
       <ul id="nav-mobile" class="side-nav">
         <li><img src="/static/img/logo.png" width="100%" style="margin-bottom: -1em;"></li>
-        <li><a href="#"><i class="material-icons">supervisor_account</i>Account</a></li>
-        <li><a href="#"><i class="material-icons">credit_card</i>Add Payment</a></li>
+        <li><a href="#"><i class="material-icons">perm_identity</i>Account</a></li>
+        <li><a href="#"><i class="material-icons">credit_card</i>Payment Methods</a></li>
+        <li><a href="#"><i class="material-icons">star</i>Rewards</a></li>
+        <li><a href="#"><i class="material-icons">supervisor_account</i>Invite Friends</a></li>
         <li><a href="#"><i class="material-icons">settings</i>Settings</a></li>
       </ul>
       <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -55,13 +58,9 @@ block content
   <div id="map" style="height:200px;width:200px;"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4_Nk7nYURPRZYwwaJ-ce7LLasI5NHRG8&callback=initMap"></script>
  
-  // ------------- LIST OF RESTAURANTS <-------------
-  // Modals
-  // Modal Trigger 
-  <button data-target="modal1" class="btn modal-trigger" style="display: none;">Modal</button>
-  // Modal Structure
-  <div id="modal1" class="modal bottom-sheet">
-    
+
+  // ------------- LIST OF RESTAURANTS -------------
+  <div id="restaurant-list">
     <ul class="collection">
       <li class="collection-item avatar">
         <img src="images/yuna.jpg" alt="" class="circle">
