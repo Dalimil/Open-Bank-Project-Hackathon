@@ -12,3 +12,8 @@
 .icon-block .material-icons {
 	font-size: inherit;
 }
+
+nav i.material-icons {
+    display: inline;
+    margin-right: 0.5em;
+}
