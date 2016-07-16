@@ -54,7 +54,7 @@ app.get('/central', function(req, res) {
 app.get('/restaurant/:name', function(req, res) {
    let name = req.params.name;
    req.session.restaurant = name;
-   res.render('restaurant', {url: "/static/img/logo.png"});
+   res.render('restaurant', {url: "/static/img/rest.jpg"});
 });
 
 app.get('/menu', function(req, res) {

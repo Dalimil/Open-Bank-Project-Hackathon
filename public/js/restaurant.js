@@ -4,7 +4,7 @@ console.log("Welcome to your web application's JavaScript!");
 $(function(){
 	// Init navbar
 	$('.button-collapse').sideNav();
-   
+	$('.parallax').parallax();
 });
 
 

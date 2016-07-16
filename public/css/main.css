@@ -31,6 +31,10 @@ nav li.active {
 	box-shadow: 0px -3px 5px #888888;
 }
 
+.slider {
+	display: none;
+}
+
 .slider h3, .slider h5 {
 	text-shadow: 2px 2px #000;
 }

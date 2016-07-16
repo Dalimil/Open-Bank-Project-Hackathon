@@ -9,7 +9,7 @@ block scripts
 
 block content
   // NavBar
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="deep-orange darken-1" role="navigation">
     <div class="nav-wrapper container">
     <a id="logo-container" href="#" class="brand-logo">Lazy Bill</a>
       <ul id="nav-mobile" class="side-nav">
@@ -24,37 +24,36 @@ block content
     </div>
   </nav>
 
-  if isFirstVisit
-    // Slider
-    <div class="slider">
-      <ul class="slides">
-        <li>
-          <img src="/static/img/cards.jpg">
-          <div class="caption center-align">
-            <h3>Connect to your bank account</h3>
-          </div>
-        </li>
-        <li>
-          <img src="/static/img/restaurant.jpg">
-          <div class="caption center-align">
-            <h3>Find places<br>near you</h3>
-            <h5 class="light grey-text text-lighten-3">Explore the area</h5>
-          </div>
-        </li>
-        <li>
-          <img src="/static/img/food.jpg">
-          <div class="caption center-align">
-            <h3>Order with<br> a single click</h3>
-            <h5 class="light grey-text text-lighten-3">Enjoy your meal!</h5><br><br>
-            <a id="finish-intro" class="waves-effect waves-light btn">Start</a>
-          </div>
-        </li>
-      </ul>
-    </div>
+  // Slider
+  <div class="slider">
+    <ul class="slides">
+      <li>
+        <img src="/static/img/cards.jpg">
+        <div class="caption center-align">
+          <h3>Connect to your bank account</h3>
+        </div>
+      </li>
+      <li>
+        <img src="/static/img/restaurant.jpg">
+        <div class="caption center-align">
+          <h3>Find places<br>near you</h3>
+          <h5 class="light grey-text text-lighten-3">Explore the area</h5>
+        </div>
+      </li>
+      <li>
+        <img src="/static/img/food.jpg">
+        <div class="caption center-align">
+          <h3>Order with<br> a single click</h3>
+          <h5 class="light grey-text text-lighten-3">Enjoy your meal!</h5><br><br>
+          <a id="finish-intro" class="waves-effect waves-light btn">Start</a>
+        </div>
+      </li>
+    </ul>
+  </div>
 
   // ------------- MAP COMES HERE ----------------
   
-  <div id="map" style="height:200px;width:200px;"></div>
+  <div id="map"></div>
   <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD4_Nk7nYURPRZYwwaJ-ce7LLasI5NHRG8&callback=initMap"></script>
  
 
