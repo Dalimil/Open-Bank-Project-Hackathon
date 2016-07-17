@@ -6,10 +6,10 @@ Hack / Make the Bank &amp; "Open Bank Project" Hackathon
 We built a mobile-first web app that revolutionizes your daily restaurant experience.
 
 ## Screenshots
-![01](https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot1.png | width=400)
-![02](https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot4.png | width=400)
-![03](https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot6.png | width=400)
-![01](https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot5.png | width=400)
+<img src="https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot1.png" width="400">
+<img src="https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot4.png" width="400">
+<img src="https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot6.png" width="400">
+<img src="https://github.com/Dalimil/Open-Bank-Project-Hackathon/blob/master/screenshots/screenshot5.png" width="400">
 
 ## Setup 
 
