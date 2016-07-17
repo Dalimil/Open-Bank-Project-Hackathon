@@ -64,13 +64,20 @@ app.get('/restaurant/:name', function(req, res) {
 
 	let submitted = req.query.ordered;
 	let showToast = false;
+	let toastData = false;
 	console.log(submitted !== undefined);
 	if(submitted !== undefined && submitted) {
 		showToast = true;
-	}
+		bankapi.sendPayment(function(data) {
+			toastData = data["transaction_ids"];
+			console.log(toastData);
+			res.render('restaurant', {url: "/static/img/rest.jpg", showToast: showToast, toastData: toastData});
+		});
+	} else {
 
-	console.log(showToast);
-	res.render('restaurant', {url: "/static/img/rest.jpg", showToast: showToast});
+		console.log(showToast);
+		res.render('restaurant', {url: "/static/img/rest.jpg", showToast: showToast, toastData: toastData});
+	}
 });
 
 app.get('/menu', function(req, res) {
@@ -78,7 +85,7 @@ app.get('/menu', function(req, res) {
 	/*if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
 	}*/
-	res.render('menu', {showToast: false, 
+	res.render('menu', {showToast: false, toastData: false,
 		menu: { "classics": [["Beef", 5.35, "House mayo, relish, salad"], 
 		["Chicken", 6.75, "Choose from chargrilled or panko crumbed and fried"], 
 		["Cheese", 6.55, "Beef, house mayo, relish, salad"], 

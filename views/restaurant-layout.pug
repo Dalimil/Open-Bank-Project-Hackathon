@@ -2,6 +2,7 @@ extends layout
 
 block scripts
   <script>var showToast= #{showToast}; </script>
+  <script>var toastData= "#{toastData}"; </script>
   script(src="/static/js/restaurant.js")
 
 block content
@@ -14,7 +15,7 @@ block content
         <li><a href="/"><i class="material-icons">room</i>Places</a></li>
         <li><a href="#"><i class="material-icons">store</i>Home</a></li>
         <li><a href="/menu"><i class="material-icons">shopping_basket</i>Menu</a></li>
-        <li><a href="/book"><i class="material-icons">web</i>Book a table</a></li>
+        <li><a href="#"><i class="material-icons">web</i>Book a table</a></li>
         <li><a href="#"><i class="material-icons">loyalty</i>Vouchers</a></li>
         <li><a href="#"><i class="material-icons">supervisor_account</i>Account</a></li>
       </ul>

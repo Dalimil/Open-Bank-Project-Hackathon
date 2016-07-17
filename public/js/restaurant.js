@@ -13,10 +13,9 @@ $(function(){
 		$("#tot-price").html((parseFloat($("#tot-price").html()) + price).toFixed(2));
 	});
 
-	console.log(showToast);
 	if(typeof showToast !== "undefined" && showToast) {
 		console.log("ok");
-		Materialize.toast('Submitted. You will receive your order soon...', 100000);
+		Materialize.toast('Submitted ('+ toastData +').<br> You will receive your order soon...', 100000);
 	}
 });
 

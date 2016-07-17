@@ -72,7 +72,7 @@ function isClose(ourPosition, position) {
     var radius = 6371.0;
     var distance = Math.sqrt(x*x + y*y) * radius;
 
-    var isClose = distance < 1.0;
+    var isClose = distance < 10.0;
     
     return isClose;
     
