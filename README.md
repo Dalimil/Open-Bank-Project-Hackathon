@@ -1,5 +1,5 @@
-# Open-Bank-Project-Hackathon
-Hack / Make the Bank &amp; "Open Bank Project" Hackathon 
+# Open Bank Project Hackathon 
+Hack / Make the Bank &amp; "Open Bank Project" Hackathon - Restaurant App
 
 **Team:** [Dalimil Hajek](https://github.com/dalimil), [Rory Fayed](https://github.com/roryfayed), Yves Renno, Carina Yazbek
 
