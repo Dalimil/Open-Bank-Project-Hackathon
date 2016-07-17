@@ -39,7 +39,7 @@ app.get('/', function(req, res) {
 	req.session.firstVisit = false;
 
 	console.log(isFirstVisit);
-	console.log(req.session);
+	// console.log(req.session);
 	// delete req.session.shop;
 	// res.json({ user: 'john' }); // Send json response
 	// res.sendFile( __dirname + "/" + "index.html" );
@@ -65,12 +65,15 @@ app.get('/restaurant/:name', function(req, res) {
 	let submitted = req.query.ordered;
 	let showToast = false;
 	let toastData = false;
-	console.log(submitted !== undefined);
+	// console.log(submitted !== undefined);
 	if(submitted !== undefined && submitted) {
 		showToast = true;
 		bankapi.sendPayment(function(data) {
+			console.log("");
+			console.log("Open bank project id: " + data['id']);
 			toastData = data["transaction_ids"];
-			console.log(toastData);
+			console.log("Transaction id: "+ toastData);
+			console.log("");
 			res.render('restaurant', {url: "/static/img/rest.jpg", showToast: showToast, toastData: toastData});
 		});
 	} else {
