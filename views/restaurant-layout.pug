@@ -1,17 +1,18 @@
 extends layout
 
 block scripts
+  <script>var showToast= #{showToast}; </script>
   script(src="/static/js/restaurant.js")
 
 block content
   // NavBar
-  <nav class="light-blue lighten-1" role="navigation">
+  <nav class="deep-orange darken-1" role="navigation">
     <div class="nav-wrapper container">
     <a id="logo-container" href="#" class="brand-logo">Lazy Bill</a>
       <ul id="nav-mobile" class="side-nav">
         <li><img src="#{url}" width="100%" style="margin-bottom: -1em;"></li>
         <li><a href="/"><i class="material-icons">room</i>Places</a></li>
-        <li class="active"><a href="#"><i class="material-icons">store</i>Home</a></li>
+        <li><a href="#"><i class="material-icons">store</i>Home</a></li>
         <li><a href="/menu"><i class="material-icons">shopping_basket</i>Menu</a></li>
         <li><a href="/book"><i class="material-icons">web</i>Book a table</a></li>
         <li><a href="#"><i class="material-icons">loyalty</i>Vouchers</a></li>
