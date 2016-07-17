@@ -1,0 +1,43 @@
+[{
+  "id":"24071997",
+  "label":null,
+  "bank_id":"rbs",
+  "_links":{
+    
+  }
+},{
+  "id":"24071996",
+  "label":null,
+  "bank_id":"rbs",
+  "_links":{
+    
+  }
+}]
+
+Application Type 	Web
+Application Name 	lazybill
+Developer Email 	rory.fayed14@imperial.ac.uk
+App Description 	buying food online
+Consumer Key 	q2sujypi4n4yc2akkytwurif4bnus1txrl5qh3fg
+Consumer Secret 	rsbl4ek5xuy5mpj3zjamtamp52hcncg5fyj3xy0i
+OAuth Endpoint 	https://apisandbox.openbankproject.com/oauth/initiate
+OAuth Documentation 	How to use OAuth for OpenBankProject
+Direct Login Endpoint 	https://apisandbox.openbankproject.com/my/logins/direct
+Direct Login Documentation 	How to use Direct Login
+
+
+var options = {
+  host: url,
+  port: 80,
+  path: '/resource?id=foo&bar=baz',
+  method: 'POST'
+};
+
+http.request(options, function(res) {
+  console.log('STATUS: ' + res.statusCode);
+  console.log('HEADERS: ' + JSON.stringify(res.headers));
+  res.setEncoding('utf8');
+  res.on('data', function (chunk) {
+    console.log('BODY: ' + chunk);
+  });
+}).end();
