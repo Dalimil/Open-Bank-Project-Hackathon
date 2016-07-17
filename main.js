@@ -77,7 +77,22 @@ app.get('/menu', function(req, res) {
 	/*if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
 	}*/
-	res.render('menu', {showToast: false});
+	res.render('menu', {showToast: false, 
+		menu: { "classics": [["Beef", 5.35, "House mayo, relish, salad"], 
+		["Chicken", 6.75, "Choose from chargrilled or panko crumbed and fried"], 
+		["Cheese", 6.55, "Beef, house mayo, relish, salad"], 
+		["Veggie", 5.55, "Housemade and pan-fried bean patty, house mayo, relish, salad"]], 
+		"salads": [["Chilli Chicken", 9.55, "Warm marinated chargrilled chicke, cucumber, cherry tomatoes."], 
+		["Chorizo Avo Salad", 8.95, "Chorizo, mixed grains, avocado, smoked semi-dried tomatoes, pomegranate seeds"],
+		["GBK Salad", 7.15, "Sliced avocado, semi-dried and cherry tomatoes, mixed leaves"]], 
+		"extras": [["Avocado", 1.65, "Try this."], ["Cheese", 1.65, "Best cheese in the galaxy."], 
+		["Onion Ring", 0.95, "The best ring ever."]], 
+		"drinks": [["High Wire", 4.95, "Mango, lychee and lip-smacking grapefruit"], 
+		["Mont Blanc", 4.85, "Rich, full-bodied with balanced bitterness."],
+		 ["San Miguel", 3.85, "Golden, pilsner style lager"]], 
+		 "desserts": [["Greek Yoghurt and Honey Ice-cream", 2.50, "Greek style creamy yogurt."], 
+		 ["Frozen Strawberry Yogurt", 2.50, "Love strawberries? Try this yogurt."], 
+		 ["Madagascan Vanilla Ice-cream", 2.30, "Best Ice-cream you can get"]] } });
 });
 
 app.get('/book', function(req, res) {

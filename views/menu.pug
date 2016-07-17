@@ -3,37 +3,30 @@ extends restaurant-layout
 block frame
   <div id="menu-tabs" class="row">
     <ul class="tabs">
-      <li class="tab col s3"><a href="#test1">Drinks</a></li>
-      <li class="tab col s3"><a href="#test2">Burgers</a></li>
-      <li class="tab col s3"><a href="#test3">Desserts</a></li>
-      <li class="tab col s3"><a href="#test4">Wine</a></li>
+      <li class="tab col s3"><a href="#test1">Classics</a></li>
+      <li class="tab col s3"><a href="#test2">Salads</a></li>
+      <li class="tab col s3"><a href="#test3">Extras</a></li>
+      <li class="tab col s3"><a href="#test4">Drinks</a></li>
+      <li class="tab col s3"><a href="#test5">Desserts</a></li>
     </ul>
 
-    <div id="test1" class="col s12">Test 1
-      <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header">Sipsmith London Dry Gin<span class="price" style="float: right">&pound;2.35</span></div>
-          <div class="collapsible-body"><a style="margin: 2em 2em 0em 0em; float: right" class="btn-floating waves-effect waves-light red add-basket"><i class="material-icons">add</i></a><p>Traditionally crafted, small batch and copper distilled premium spirits.</p></div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="material-icons">place</i>Second</div>
-          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-        </li>
-        <li>
-          <div class="collapsible-header"><i class="material-icons">whatshot</i>Third</div>
-          <div class="collapsible-body"><p>Lorem ipsum dolor sit amet.</p></div>
-        </li>
-      </ul>
-    </div>
-    <div id="test2" class="col s12">Test 2
+    - console.log(menu);
 
-    </div>
-    <div id="test3" class="col s12">Test 3
-
-    </div>
-    <div id="test4" class="col s12">Test 4
-
-    </div>
+    - var counter = 0;
+    - for (var property in menu) {
+        - counter += 1;
+        div.col.s12(id= "test" + counter)
+          ul.collapsible(data-collapsible="accordion")
+            - for(var i =0; i< menu[property].length; i++) {
+            li
+              div.collapsible-header= menu[property][i][0]
+                span.price(style="float: right")= "£" + menu[property][i][1]
+              div.collapsible-body
+                a(style="margin: 1.2em 2em 0em 0em; float: right" class="btn-floating waves-effect waves-light red add-basket")
+                  <i class="material-icons">add</i>
+                p= menu[property][i][2]
+            - }
+    - }
   </div>
 
   <div id="menu-total-price">

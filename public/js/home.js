@@ -9,9 +9,15 @@ $(function(){
 	if(isFirstVisit) {
 		$("#map").css("visibility", "hidden");
 		$('#restaurant-list').hide();
-		
+
 		$('.slider').slider({ full_width: true });
+		
+		$('.slides').height($('body').height() - $("nav").height());
+		console.log($(".slides").height());
+		$('ul.indicators').css('z-index', 3);
+		$('.slider').height($('body').height() - $("nav").height() - 20);
 		$(".slider").show();
+		console.log($(".slides").height());
 
 		$('#finish-intro').click(function() {
 			$('.slider').slideUp();
