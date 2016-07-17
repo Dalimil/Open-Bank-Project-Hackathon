@@ -23,10 +23,30 @@ function sendPayment(cb) {
 			}
 		},
 		function(err, response, body) {
-			cb(body);
-		}
-	);
+            var token = JSON.parse(body)["token"];
+            // send payment here
+            var bodyObject = {  "to":{    "bank_id":"rbs",    "account_id":"224488"  },  "value":{    "currency":"EUR",    "amount":"100.53"  },  "description":"A description for the transaction to be created"};
+			request.post({
+         url:"https://apisandbox.openbankproject.com/obp/v2.0.0/banks/rbs/accounts/224466/owner/transaction-request-types/SANDBOX_TAN/transaction-requests",
+                timeout: 10000,
+                json: true,
+                
+                headers: {
+                    "Content-Type": "application/json",
+				    "Authorization": 'DirectLogin token="'+token+'"'
+                },
+                 body: bodyObject
+            
+                
+            }, function(err, res, body) {
+                console.log(body);
+                cb(body);
+                
+            });
+		});
 	console.log(k);
 }
 
 exports.sendPayment = sendPayment;
+
+
