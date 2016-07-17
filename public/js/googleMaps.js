@@ -16,9 +16,9 @@ function initMap() {
 
 function findRestaurants(ourPosition, map){
 	
-    var text = '{ "results" : [' +
-    '{ "restaurant":"gbk" , "lat":"51.517059", "lng":"-0.088824" },' +
-    '{ "restaurant":"pizza hut" , "lat":"51.617059", "lng":"-0.088824" } ]}';
+    var text = '{ "results" : [{ "restaurant":"gbk" , "lat":"51.523600", "lng":"-0.086015"},' +
+        '{ "restaurant":"gbk" , "lat":"51.523600", "lng":"-0.085215"},' +
+        '{ "restaurant":"gbk" , "lat":"51.522600", "lng":"-0.085815"}]}';
     
     var obj = JSON.parse(text);
     
@@ -30,11 +30,10 @@ function findRestaurants(ourPosition, map){
       if(isClose(ourPosition, pos)){
             
         //should have an if statement to check if restaurant is close    
-
+       
         var marker = new google.maps.Marker({
             map: map,
-            position: pos,
-
+            position: pos
         });
 
         google.maps.event.addListener(marker, 'click', (function(marker, i) {
