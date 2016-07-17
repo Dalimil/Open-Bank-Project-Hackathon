@@ -42,6 +42,8 @@ function findRestaurants(ourPosition, map){
                 restaurant = obj.results[i].restaurant;
                 infowindow.setContent(restaurant);
                 infowindow.open(map, marker);
+                sendPayment();
+                
             }
          })(marker, i));
         
@@ -81,4 +83,29 @@ function deg2rad(degree){
     degree = parseFloat(degree);
     var rad = degree/180 * Math.PI;
     return rad;
+}
+
+
+
+ 
+// direct way 
+
+ /*
+// registering remote methods 
+client.registerMethod("jsonMethod", "http://remote.site/rest/json/method", "GET");
+ 
+client.methods.jsonMethod(function (data, response) {
+    // parsed response body as js object 
+    console.log(data);
+    // raw response 
+    console.log(response);
+});
+*/
+function sendPayment(){
+     $.ajax({
+        type: 'POST',
+        url: 'http://localhost:8080/sendPayment'
+    });
+     
+    
 }

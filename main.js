@@ -122,4 +122,29 @@ server.listen(config.PORT, function() {
 	// console.log(app.get('env'));
 	console.log("Server dir: " + pp('/'));
 	console.log((new Date()).toLocaleTimeString() + " - Server running at http://localhost:" + port);
+    
+    
+    
+});
+
+app.post('/sendPayment', function(req, res) {
+
+    var Client = require('node-rest-client').Client;
+    var client = new Client();
+    
+    var args = {
+    //parameters: { arg1: "", arg2: "", arg3: ""  },
+    headers: { "Content-Type": "application/json",  "Authorization": "DirectLogin username='rory_fayed@hotmail.com', password='password', consumer_key='04uk4igt3fng0gwj20o3scqllena0voaskbyo4gh'" }
+    };
+    
+    
+    
+    client.get("https://apisandbox.openbankproject.com/my/logins/direct", args,
+    function (data, response) {
+        // parsed response body as js object 
+        console.log(data);
+        // raw response 
+      
+    });
+    
 });
