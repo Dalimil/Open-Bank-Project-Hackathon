@@ -9,6 +9,7 @@ const pp = function(s){ return path.join(__dirname, s); };
 const app = express();
 const server = require('http').createServer(app); // or https
 const config = require('./config');
+const bankapi = require('./controllers/OpenBankApi');
 
 // Pug template engine - previously Jade - http://jade-lang.com/
 app.set('views', pp('views')); // where templates are located
@@ -127,24 +128,8 @@ server.listen(config.PORT, function() {
     
 });
 
-app.post('/sendPayment', function(req, res) {
-
-    var Client = require('node-rest-client').Client;
-    var client = new Client();
-    
-    var args = {
-    //parameters: { arg1: "", arg2: "", arg3: ""  },
-    headers: { "Content-Type": "application/json",  "Authorization": "DirectLogin username='rory_fayed@hotmail.com', password='password', consumer_key='04uk4igt3fng0gwj20o3scqllena0voaskbyo4gh'" }
-    };
-    
-    
-    
-    client.get("https://apisandbox.openbankproject.com/my/logins/direct", args,
-    function (data, response) {
-        // parsed response body as js object 
-        console.log(data);
-        // raw response 
-      
-    });
-    
+app.get('/sendPayment', function(req, res) {
+	bankapi.sendPayment(function(data) {
+		res.send(data);
+	});
 });

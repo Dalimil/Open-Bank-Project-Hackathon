@@ -1,38 +1,32 @@
 /** Sample code using the 'request' module to make server-side http requests */
 var request = require('request');
 
-/* GET */
+/* GET 
 request('http://example.com', function(error, response, body) {
 	// Callback function
 	if (!error && response.statusCode == 200) {
 		console.log(body); // Show the HTML
 	}
-});
+});*/
 
-/* POST */
-request.post({
-		url: 'http://example.com/upload',
-		form: {
-			key: 'value',
-			name: 'Alice'
+
+
+function sendPayment(cb) {
+
+	/* POST */
+	var k = request.post({
+			url: 'https://apisandbox.openbankproject.com/my/logins/direct',
+			timeout: 10000,
+			headers: {
+				"Content-Type": "application/json",
+				"Authorization": 'DirectLogin username="rory_fayed@hotmail.com", password="password", consumer_key="04uk4igt3fng0gwj20o3scqllena0voaskbyo4gh"'
+			}
 		},
-		timeout: 10000,
-		headers: {
-			'User-Agent': 'request'
+		function(err, response, body) {
+			cb(body);
 		}
-	},
-	function(err, response, body) {
-		console.log(body);
-	}
-);
+	);
+	console.log(k);
+}
 
-/* Cookies */
-var jar = request.jar();
-var cookie = request.cookie("name=John");
-jar.setCookie(cookie, 'http://example.com'); // which domain it belongs to
-
-request({ url: "http://example.com", jar: jar },
-	function(error, response, body) {
-		console.log(body);
-	}
-);
+exports.sendPayment = sendPayment;
