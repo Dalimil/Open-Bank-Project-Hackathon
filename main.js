@@ -85,7 +85,7 @@ app.get('/menu', function(req, res) {
 	/*if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
 	}*/
-	res.render('menu', {showToast: false, toastData: false,
+	res.render('menu', {url: "/static/img/rest.jpg", showToast: false, toastData: false,
 		menu: { "classics": [["Beef", 5.35, "House mayo, relish, salad"], 
 		["Chicken", 6.75, "Choose from chargrilled or panko crumbed and fried"], 
 		["Cheese", 6.55, "Beef, house mayo, relish, salad"], 
