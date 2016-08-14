@@ -11,6 +11,8 @@ const server = require('http').createServer(app); // or https
 const config = require('./config');
 const bankapi = require('./controllers/OpenBankApi');
 
+app.set('port', (process.env.PORT || 8080));
+
 // Pug template engine - previously Jade - http://jade-lang.com/
 app.set('views', pp('views')); // where templates are located
 app.set('view engine', 'pug'); // Express loads the module internally
@@ -112,7 +114,7 @@ app.get('/book', function(req, res) {
 
 
 
-server.listen(config.PORT, function() {
+server.listen(process.env.PORT || config.PORT, function() {
 	var host = server.address().address;
 	var port = server.address().port;
 	// console.log(app.get('env'));
