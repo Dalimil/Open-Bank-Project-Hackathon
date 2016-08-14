@@ -4,6 +4,8 @@ const express = require('express');
 const bodyParser = require('body-parser'); // additional body parsing
 const morgan = require('morgan'); // General request logger
 const session = require('express-session'); // session cookies
+const MongoStore = require('connect-mongo')(session); // Session data storage (server-side MongoDB)
+const mongoose = require('mongoose'); // ORM for MongoDB
 const path = require('path'); // path.join
 const pp = function(s){ return path.join(__dirname, s); };
 const app = express();
@@ -23,11 +25,14 @@ app.use(morgan('dev')); // Set up logger
 const debug = require('./utils/debug'); // + my own logger
 app.use(debug.requestInfo); // Middleware function - Order/Place of call important!
 
-// Set up secure cookie session - MemoryOnly - Session disappears on reload
+mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
+
+// Set up secure cookie session
 app.use(session({
 	secret: config.APP_SECRET,
 	saveUninitialized: false,
-	resave: false // keep the most recent session modification
+	resave: false, // keep the most recent session modification
+	store: new MongoStore({ mongooseConnection: mongoose.connection })
 }));
 
 // Expose urls like /static/images/logo.png 
