@@ -3,9 +3,7 @@
 const express = require('express');
 const bodyParser = require('body-parser'); // additional body parsing
 const morgan = require('morgan'); // General request logger
-const session = require('express-session'); // session cookies
-const MongoStore = require('connect-mongo')(session); // Session data storage (server-side MongoDB)
-const mongoose = require('mongoose'); // ORM for MongoDB
+const Cookies = require('cookies');
 const path = require('path'); // path.join
 const pp = function(s){ return path.join(__dirname, s); };
 const app = express();
@@ -22,26 +20,15 @@ app.use(bodyParser.urlencoded({ extended: false })); // application/x-www-form-u
 app.use(bodyParser.json()); // application/json
 
 app.use(morgan('dev')); // Set up logger
-const debug = require('./utils/debug'); // + my own logger
-app.use(debug.requestInfo); // Middleware function - Order/Place of call important!
-
-mongoose.connect(config.MONGODB_URI); // Connect to MongoDB
-
-// Set up secure cookie session
-app.use(session({
-	secret: config.APP_SECRET,
-	saveUninitialized: false,
-	resave: false, // keep the most recent session modification
-	store: new MongoStore({ mongooseConnection: mongoose.connection })
-}));
 
 // Expose urls like /static/images/logo.png 
 app.use('/static', express.static(pp('public'))); // first arg could be omitted
 
 // Index
 app.get('/', function(req, res) {
-	let isFirstVisit = req.session.firstVisit === undefined ? true : false;
-	req.session.firstVisit = false;
+	let cookies = new Cookies(req, res);
+	let isFirstVisit = cookies.get("firstVisit") == undefined ? true : false;
+	cookies.set("firstVisit", "false");
 
 	console.log(isFirstVisit);
 	// console.log(req.session);
@@ -59,13 +46,15 @@ app.get('/central', function(req, res) {
 
 // This would be POST but I'm too tired to do the whole client-submit-form flow
 app.get('/submitted', function(req, res) {
-	let restaurant = req.session.restaurant;
+	let cookies = new Cookies(req, res);
+	let restaurant = cookies.get("restaurant");
 	res.redirect('/restaurant/' + restaurant + '/?ordered=true');
 });
 
 app.get('/restaurant/:name', function(req, res) {
 	let name = req.params.name;
-	req.session.restaurant = name;
+	let cookies = new Cookies(req, res);
+	cookies.set("restaurant", name);
 
 	let submitted = req.query.ordered;
 	let showToast = false;
@@ -89,7 +78,8 @@ app.get('/restaurant/:name', function(req, res) {
 });
 
 app.get('/menu', function(req, res) {
-	let restaurant = req.session.restaurant;
+	let cookies = new Cookies(req, res);
+	let restaurant = cookies.get("restaurant");
 	/*if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
 	}*/
@@ -112,24 +102,14 @@ app.get('/menu', function(req, res) {
 });
 
 app.get('/book', function(req, res) {
-	let restaurant = req.session.restaurant;
+	let cookies = new Cookies(req, res);
+	let restaurant = cookies.get("restaurant");
 	if(restaurant === undefined) {
 		res.send("You didn't select a restaurant!");
 	}
 	res.send("ok");
 });
 
-
-// Debug
-app.route('/debug') 
-	.get(function(req, res) {
-		var info = req.requestInfo;
-		res.jsonPretty(info); // custom method
-	})
-	.post(function(req, res) {
-		// Or with status: res.status(500).json({ error: 'message' });
-		res.json(req.requestInfo);
-	});
 
 
 server.listen(config.PORT, function() {
