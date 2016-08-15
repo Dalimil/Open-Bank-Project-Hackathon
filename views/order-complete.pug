@@ -1,0 +1,31 @@
+extends restaurant-layout
+
+block scripts
+  script.
+    $(function(){$('.button-collapse').sideNav();});
+    
+block frame
+  <div class="container">
+    <h1 class="header center deep-orange-text" style="font-size: 3em">Done!</h1>
+    <div class="row center">
+      <h5 class="header col s12 light">You should receive your order soon...</h5>
+      <h5 class="header col s12 light">Order ID: <strong>#{orderid}</strong></h5>
+    </div>
+
+    <div class="row">
+      <div class="col s12">
+        <p><br>Dining with friends? Want to split the bill equally?<br>Select your friends below or enter their ID manually.</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="input-field col s6">
+        <input  type="tel" class="validate" placeholder="Friend ID">
+        <label for="icon_telephone">Friend ID</label> 
+          <a class="waves-effect waves-light btn deep-orange">Join</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="row center">
+  </div>
+

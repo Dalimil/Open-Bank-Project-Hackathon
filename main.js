@@ -42,14 +42,22 @@ app.get('/', function(req, res) {
 });
 
 app.get('/order-complete', function(req, res) {
-	res.render('order-complete');
+	let cookies = new Cookies(req, res);
+	let orderid = cookies.get("order-id");
+	console.log("OrderID", orderid);
+	res.render('order-complete', {url: "/static/img/rest.jpg", orderid: orderid });
 });
 
 // This would be POST but I'm too tired to do the whole client-submit-form flow
 app.get('/submitted', function(req, res) {
 	let cookies = new Cookies(req, res);
 	let restaurant = cookies.get("restaurant");
-	res.redirect('/restaurant/' + restaurant + '/?ordered=true');
+	let oid = Math.round(Math.random()*10000);
+	if(oid < 1000) oid += 1000;
+	
+	cookies.set("order-id", oid.toString());
+	// res.redirect('/restaurant/' + restaurant + '/?ordered=true');
+	res.redirect('/order-complete');
 });
 
 app.get('/restaurant/:name', function(req, res) {
@@ -121,10 +129,7 @@ server.listen(process.env.PORT || config.PORT, function() {
 	var port = server.address().port;
 	// console.log(app.get('env'));
 	console.log("Server dir: " + pp('/'));
-	console.log((new Date()).toLocaleTimeString() + " - Server running at http://localhost:" + port);
-    
-    
-    
+	console.log((new Date()).toLocaleTimeString() + " - Server running at http://localhost:" + port);  
 });
 
 app.get('/sendPayment', function(req, res) {
