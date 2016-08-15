@@ -41,9 +41,8 @@ app.get('/', function(req, res) {
 	res.render('index', { isFirstVisit: isFirstVisit } );  // TODO: remove negation
 });
 
-// Our central site - with user registration, etc.
-app.get('/central', function(req, res) {
-	res.render('central');
+app.get('/order-complete', function(req, res) {
+	res.render('order-complete');
 });
 
 // This would be POST but I'm too tired to do the whole client-submit-form flow
@@ -112,6 +111,9 @@ app.get('/book', function(req, res) {
 	res.send("ok");
 });
 
+app.get("/account", function(req, res) {
+	res.render("account");
+});
 
 
 server.listen(process.env.PORT || config.PORT, function() {

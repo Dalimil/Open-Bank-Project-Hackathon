@@ -1,0 +1,68 @@
+extends layout
+
+block scripts
+  script.
+    $(function(){$('.button-collapse').sideNav();});
+
+block content
+  // NavBar
+  <nav class="deep-orange darken-1" role="navigation">
+    <div class="nav-wrapper container">
+    <a id="logo-container" href="#" class="brand-logo">Lean Bill</a>
+      <ul id="nav-mobile" class="side-nav">
+        <li><img src="/static/img/logo.png" width="100%" style="margin-bottom: -1em;"></li>
+        <li><a href="/"><i class="material-icons">room</i>Places</a></li>
+        <li><a href="/account"><i class="material-icons">perm_identity</i>Account</a></li>
+        <li><a href="/account"><i class="material-icons">credit_card</i>Payment Methods</a></li>
+        <li><a href="#"><i class="material-icons">star</i>Rewards</a></li>
+        <li><a href="#"><i class="material-icons">supervisor_account</i>Invite Friends</a></li>
+        <li><a href="#"><i class="material-icons">settings</i>Settings</a></li>
+      </ul>
+      <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+
+  <div class="row"></div>
+  <div class="row">
+    <form class="col s12">
+      <div class="row"><h5>Account details</h5></div>
+      <div class="row">
+        <div class="input-field col s6">
+          <i class="material-icons prefix">account_circle</i>
+          <input  type="text" class="validate" value="Anne-Marie">
+          <label for="icon_prefix">First Name</label>
+        </div>
+        <div class="input-field col s6">
+          <input  type="text" class="validate" value="Yazbek">
+          <label for="icon_prefix">Last Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">email</i>
+          <input  type="text" class="validate" value="yazbekam_1@hotmail.com">
+          <label for="icon_prefix">Email</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">phone</i>
+          <input  type="tel" class="validate" placeholder="Please enter your phone number">
+          <label for="icon_telephone">Telephone</label>
+        </div>
+      </div>
+      <div class="row"><h5>Payment methods</h5></div>
+      <div class="row">
+        <div class="input-field col s12">
+          <i class="material-icons prefix">credit_card</i>
+          <input disabled type="tel" class="validate" value="3587 **** **** **** ****">
+          <label for="icon_telephone">Visa Debit</label>
+        </div>
+        <a class="waves-effect waves-light btn">Add another?</a>
+      </div>
+
+
+    </form>
+  </div>
+  
+
